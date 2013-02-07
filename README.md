@@ -89,6 +89,30 @@ cluster.acquire(function(err, client, pool) {
 
 If you're familiar with generic-pool, you'll see the only difference is that your callback function receives not only client connection, but also pool object for the server which has been chosen to serve your request. You use it to release client back to this specific pool after you're done.
 
+## Master-slave environments
+
+If you have one master server and multiple slaves, just create slave cluster with multiple slave servers added and master cluster with single master server.
+
+```javascript
+var ClusterPool = require('cluster-pool');
+var MySQLClient = require('mysql').Client;
+
+var master = ClusterPool.create({ /* factory settings */ });
+master.add(function(callback) { /* Connect to master */ });
+
+var slave = ClusterPool.create({ /* factory settings */ });
+slave.add(function(callback) { /* Connect to slave #1 */ });
+slave.add(function(callback) { /* Connect to slave #2 */ });
+slave.add(function(callback) { /* Connect to slave #3 */ });
+// …
+
+// When you need to write, acquire master
+master.acquire(function(err, client, poll) { /* Do something. */ });
+
+// When you need to read, acquire one of the slaves balanced
+slave.acquire(function(err, client, poll) { /* Do something. */ });
+```
+
 ## Run tests
 
 ```
