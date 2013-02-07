@@ -20,8 +20,7 @@ If you are familiar with [node-pool module](https://github.com/coopernurse/node-
 // Create a MySQL connection pool with a max of 10 connections, a min of 2
 // and a 30 seconds max idle time. These settings will be used for all pools
 // created for individual servers.
-var ClusterPool = require('./lib/cluster-pool');
-var MySQLClient = require('mysql').Client;
+var ClusterPool = require('cluster-pool');
 
 var cluster = ClusterPool.create({
   name: 'mysql',
@@ -32,11 +31,13 @@ var cluster = ClusterPool.create({
 });
 ```
 
-The difference to generic-pool module is that factory object doesn't contain connect function - it will be defined for each server in cluster. For documentation of factory object fields (and other generic-pool features), please refer to [generic-pool documentation](https://github.com/coopernurse/node-pool#documentation).
+The difference to generic-pool module is that factory object doesn't contain connect function - it will be defined for each server in cluster. For documentation of factory object fields (and other pool features), please refer to [generic-pool documentation](https://github.com/coopernurse/node-pool#documentation).
 
 ### Step 2 - Add servers to the cluster
 
 ```javascript
+var MySQLClient = require('mysql').Client;
+
 // Add server to the cluster
 cluster.add(function(callback) {
   var client = new MySQLClient();
