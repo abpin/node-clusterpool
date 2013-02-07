@@ -1,5 +1,7 @@
 # About
 
+**Cluster of generic pools for multi-server environments.**
+
 This module extends [node-pool module](https://github.com/coopernurse/node-pool) providing clusters of pools. Generic resource pool module can be used to reuse or throttle expensive resources such as database connections. Cluster-pool module allows pooling connections to replicated (multi-slave) environments, rotating requests between different servers.
 
 Each server in cluster has its own connection pool created by the module. Requests for connections are rotated between server pools. Rotation checks server pool waiting queue and omits fully used pools to rotate between non-full pools (if all pools are full, requests are distributed again to queues of all pools).
