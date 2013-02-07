@@ -1,0 +1,35 @@
+{
+  "name": "cluster-pool",
+  "version": "1.0.0",
+  "description": "Cluster of pools for generic resources",
+  "main" : "lib/cluster-pool.js",
+  "keywords": [
+    "pool",
+    "pooling",
+    "throttle",
+    "cluster",
+    "slaves",
+    "multi",
+    "multiple"
+  ],
+  "author": {
+    "name": "Bartosz Raciborski",
+    "email": "bartosz@raciborski.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/racbart/node-clusterpool.git"
+  },
+  "scripts": {
+    "test": "expresso -I lib test/*.js"
+  },
+  "engines": {
+    "node": ">= 0.2.0"
+  },
+  "dependencies": {
+      "generic-pool": ">0.0.0"
+  },
+  "devDependencies": {
+      "expresso": ">0.0.0"
+  }
+}
