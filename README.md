@@ -95,7 +95,6 @@ If you have one master server and multiple slaves, just create slave cluster wit
 
 ```javascript
 var ClusterPool = require('cluster-pool');
-var MySQLClient = require('mysql').Client;
 
 var master = ClusterPool.create({ /* factory settings */ });
 master.add(function(callback) { /* Connect to master */ });
